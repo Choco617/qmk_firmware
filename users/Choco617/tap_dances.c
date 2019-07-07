@@ -1,4 +1,7 @@
 #include "tap_dances.h"
+#include "secrets.h"
+
+#define PW secrets[2]
 
 // for quad tap dance, see example 4 here:  https://docs.qmk.fm/feature_tap_dance.html#complex-examples
 
@@ -187,7 +190,8 @@ void tap_dance_login (qk_tap_dance_state_t *state, void *user_data) {
     case 1:
 
       /* just enter password and enter */
-      SEND_STRING(PW SS_TAP(X_ENTER));
+      // for now PW will be in quotes because I can't get the define working, this needs to be fixed before I can use it
+      SEND_STRING("PW" SS_TAP(X_ENTER));
       break;
 
     case 2:
@@ -213,7 +217,7 @@ void tap_dance_login (qk_tap_dance_state_t *state, void *user_data) {
       _delay_ms(250);
 
       /* login */
-      SEND_STRING(PW SS_TAP(X_ENTER));
+      SEND_STRING("PW" SS_TAP(X_ENTER));
       break;
 
   }

@@ -38,7 +38,8 @@
 #define KC_SPARR LT(_POWER, KC_SPC)
 #define KC_RAENT LT(_RAISE, KC_ENT)
 #define KC_LODEL LT(_LOWER, KC_DEL)
-#define KC_MMAC MO(_MACRO)
+// #define KC_MMAC MO(_MACRO)
+#define KC_MADJ MO(_ADJUST)
 #define KC_ACTL CTL_T(KC_A)
 #define KC_RRWIN GUI_T(KC_R) // KC_RWIN is already defined
 #define KC_SALT ALT_T(KC_S)
@@ -65,6 +66,7 @@
 
 extern keymap_config_t keymap_config;
 
+/*
 enum planck_layers {
   _COLEMAK,
   _ADVENTUROUS,
@@ -76,7 +78,9 @@ enum planck_layers {
   _GAMING,
   _RGBLED
 };
+*/
 
+/*
 enum planck_keycodes {
   COLEMAK = SAFE_RANGE,
   ADVENTUROUS,
@@ -101,6 +105,7 @@ enum planck_keycodes {
   Rodman,
   W10F8
 };
+*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -114,8 +119,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
-// Adventurous
-[_ADVENTUROUS] = LAYOUT_kc(
+// Colemak adventurous, Windows
+[_COLEMAKWIN] = LAYOUT_kc(
+//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
+   TAB,    TDQ,    W,      F,      PCTL,   B,      J,      L,      U,      Y,      SCLN,   BSPC,
+   ESC,    ACTL,   RRWIN,  SALT,   TSHF,   G,      M,      NSHF,   EALT,   IWIN,   OCTL,   QUOT,
+   SHCAPS, Z,      X,      C,      D,      V,      K,      H,      COMM,   DOT,    TDS,    SHENT,
+   NO,     NO,     NO,     NO,     LODEL,  SHBS,   SPARR,  RAENT,  NO,     NO,     NO,     NO
+//└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
+),
+
+// Colemak adventurous, macOS
+[_COLEMAKMAC] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
    TAB,    TDQ,    W,      F,      PCTL,   B,      J,      L,      U,      Y,      SCLN,   BSPC,
    ESC,    ACTL,   RRWIN,  SALT,   TSHF,   G,      M,      NSHF,   EALT,   IWIN,   OCTL,   QUOT,
@@ -140,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    GRV,    NO,     NO,     BSLS,   AMPR,   PSCR,   NO,     PSLS,   P7,     P8,     P9,     PAST,
    TRNS,   MINUS,  EQL,    TDL,    TDR,    SLCK,   HOME,   PGUP,   P4,     P5,     P6,     PMNS,
    TRNS,   MPRV,   MPLY,   MNXT,   VOLD,   PAUS,   END,    PGDN,   P1,     P2,     P3,     PPLS,
-   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   DEL,    TRNS,   MMAC,   P0,     P0,     TDC,    PENT
+   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   DEL,    TRNS,   MADJ,   P0,     P0,     TDC,    PENT
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -150,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    GRV,    1,      2,      3,      4,      5,      6,      7,      8,      9,      0,      TRNS,
    TRNS,   F1,     F2,     F3,     F4,     F5,     F6,     LBRC,   INS,    HOME,   PGUP,   TRNS,
    TRNS,   F7,     F8,     F9,     F10,    F11,    F12,    RBRC,   DEL,    END,    PGDN,   TRNS,
-   TRNS,   TRNS,   TRNS,   TRNS,   MMAC,   DELE,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS
+   TRNS,   TRNS,   TRNS,   TRNS,   MADJ,   DELE,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -173,11 +188,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |Chr34 |      |      |      |NumLk | RGB  |      |      |Qwerty|ADVNTR|Colemk|
  * `-----------------------------------------------------------------------------------'
  */
-[_MACRO] = {
-  {SwMon,  Debug,   EWO,   KC_NO, LALT(KC_P4), LALT(KC_H), KC_NO,   LALT(KC_P1), KC_NO, KC_NO,  RESET,       GAMING},
-  {DelDng, Cmnt,    PVP,   KC_NO, LALT(KC_M),  LALT(KC_A), KC_NO,   KC_NO,       KC_NO, KC_NO,  RGBLED,      Rodman},
-  {KC_NO,  UnCm,    KC_NO, KC_NO, KC_NO,       KC_NO,      KC_NO,   KC_NO,       KC_NO, KC_NO,  KC_NO,       KC_NO},
-  {W10F8,  Chr34,   KC_NO, KC_NO, _______,     KC_NUMLOCK, RGB_TOG, _______,     KC_NO, QWERTY, ADVENTUROUS, COLEMAK}
+[_ADJUST] = {
+  {SwMon,  Debug,   EWO,   PW2,         LALT(KC_P4), LALT(KC_H), KC_NO,   LALT(KC_P1), KC_NO,  KC_NO,   RESET,      GAMING},
+  {DelDng, Cmnt,    PVP,   KC_SECRET_2, LALT(KC_M),  LALT(KC_A), KC_NO,   KC_NO,       KC_NO,  KC_NO,   RGBLED,     Rodman},
+  {KC_NO,  UnCm,    KC_NO, KC_NO,       KC_NO,       KC_NO,      KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,      KC_NO},
+  {KC_NO,  Chr34,   KC_NO, KC_NO,       _______,     KC_NUMLOCK, RGB_TOG, _______,     QWERTY, COLEMAK, COLEMAKWIN, COLEMAKMAC}
 },
 
 // Power
@@ -237,11 +252,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 #endif
 
+/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 
-    /* layers */
-      
+    
+    // layers
+
     case COLEMAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_COLEMAK);
@@ -332,7 +349,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
-    /* macros */
+    // macros
 
     case SwMon:
       if (record->event.pressed) {
@@ -385,7 +402,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case EWO:
       if (record->event.pressed) {
-        /*                 1             2             3             4             5             6             7             8                                                                                                                              1             2             3             4             5             6             7             8             9             10            11            12            13            14            15            16            17            18            19    */
+        //                 1             2             3             4             5             6             7             8                                                                                                                              1             2             3             4             5             6             7             8             9             10            11            12            13            14            15            16            17            18            19    
         SEND_STRING(SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) "Is Not" SS_TAP(X_TAB) "Com" SS_TAP(X_TAB) "Is Not" SS_TAP(X_TAB) "Can" SS_TAP(X_TAB) SS_TAP(X_TAB) "Gilbertson" SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB));
       }
       return false;
@@ -393,8 +410,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case PVP:
       if (record->event.pressed) {
-      	/*   Alt, T, R, T, Up Arrow x19 (to get to swDocMgr 2014), Space, N, Up Arrow x36 (to get to Microsoft XML 6.0), Space, Up Arrow x83 (to get to Microsoft Excel 16.0), Space, Enter  */
-        /*                                      1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19                1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35               1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35           36           37           38           39           40           41           42           43           44           45           46           47           48           49           50           51           52           53           54           55           56           57           58           59           60           61           62           63           64           65           66           67           68           69           70           71           72           73           74           75           76           77           78           79           80           81           82           83                      */
+      	//   Alt, T, R, T, Up Arrow x19 (to get to swDocMgr 2014), Space, N, Up Arrow x36 (to get to Microsoft XML 6.0), Space, Up Arrow x83 (to get to Microsoft Excel 16.0), Space, Enter
+        //                                      1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19                1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35               1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35           36           37           38           39           40           41           42           43           44           45           46           47           48           49           50           51           52           53           54           55           56           57           58           59           60           61           62           63           64           65           66           67           68           69           70           71           72           73           74           75           76           77           78           79           80           81           82           83
         SEND_STRING(SS_TAP(X_LALT) "trt" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " N" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " " SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " " SS_TAP(X_ENTER));
       }
       return false;
@@ -427,3 +444,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+*/
+

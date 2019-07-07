@@ -16,120 +16,138 @@ bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
 // Then runs the _keymap's record handier if not processed here
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  // If console is enabled, it will print the matrix position and status of each key pressed
-#ifdef KEYLOGGER_ENABLE
-#   if defined(KEYBOARD_ergodox_ez) || defined(KEYBOARD_keebio_iris_rev2)
-        xprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.row, record->event.key.col, record->event.pressed);
-#   else
-        xprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
-#   endif
-#endif //KEYLOGGER_ENABLE
-
     switch (keycode) {
-    case KC_QWERTY ... KC_CARPLAX:
-        if (record->event.pressed) {
-            set_single_persistent_default_layer(keycode - KC_QWERTY);
-        }
-        break;
 
-    case KC_MAKE:  // Compiles the firmware, and adds the flash command based on keyboard bootloader
-        if (!record->event.pressed) {
-            uint8_t temp_mod = get_mods();
-            uint8_t temp_osm = get_oneshot_mods();
-            clear_mods(); clear_oneshot_mods();
-            send_string_with_delay_P(PSTR("make " QMK_KEYBOARD ":" QMK_KEYMAP), TAP_CODE_DELAY);
-#ifndef MAKE_BOOTLOADER
-            if ( ( temp_mod | temp_osm ) & MOD_MASK_SHIFT )
-#endif
-            {
-                #if defined(__arm__)
-                send_string_with_delay_P(PSTR(":dfu-util"), TAP_CODE_DELAY);
-                #elif defined(BOOTLOADER_DFU)
-                send_string_with_delay_P(PSTR(":dfu"), TAP_CODE_DELAY);
-                #elif defined(BOOTLOADER_HALFKAY)
-                send_string_with_delay_P(PSTR(":teensy"), TAP_CODE_DELAY);
-                #elif defined(BOOTLOADER_CATERINA)
-                send_string_with_delay_P(PSTR(":avrdude"), TAP_CODE_DELAY);
-                #endif // bootloader options
-            }
-            if ( ( temp_mod | temp_osm ) & MOD_MASK_CTRL) { send_string_with_delay_P(PSTR(" -j8 --output-sync"), TAP_CODE_DELAY); }
-#ifdef RGB_MATRIX_SPLIT_RIGHT
-            send_string_with_delay_P(PSTR(" RGB_MATRIX_SPLIT_RIGHT=yes OLED_DRIVER_ENABLE=no"), TAP_CODE_DELAY);
-#endif
-            send_string_with_delay_P(PSTR(SS_TAP(X_ENTER)), TAP_CODE_DELAY);
-        }
-
-        break;
-
-    case VRSN: // Prints firmware version
+    case VRSN: // Print firmware version
         if (record->event.pressed) {
             send_string_with_delay_P(PSTR(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE), TAP_CODE_DELAY);
         }
         break;
 
-    // These are a serious of gaming macros.
-    // Only enables for the viterbi, basically,
-    // to save on firmware space, since it's limited.
-#ifdef MACROS_ENABLED
-    case KC_OVERWATCH: // Toggle's if we hit "ENTER" or "BACKSPACE" to input macros
-        if (record->event.pressed) { userspace_config.is_overwatch ^= 1; eeconfig_update_user(userspace_config.raw); }
-#ifdef RGBLIGHT_ENABLE
-        userspace_config.is_overwatch ? rgblight_mode_noeeprom(17) : rgblight_mode_noeeprom(18);
-#endif //RGBLIGHT_ENABLE
+    case KC_COLEMAK ... KC_QWERTY: // set default layer for any of the Colemak variants or Qwerty (not gaming or RGBLED)        
+        if (record->event.pressed) {
+            set_single_persistent_default_layer(keycode - KC_COLEMAK);
+        }
         break;
-    case KC_SALT:
-        return send_game_macro("Salt, salt, salt...", record, false);
-    case KC_MORESALT:
-        return  send_game_macro("Please sir, can I have some more salt?!", record, false);
-    case KC_SALTHARD:
-        return send_game_macro("Your salt only makes me harder, and even more aggressive!", record, false);
-    case KC_GOODGAME:
-        return send_game_macro("Good game, everyone!", record, false);
-    case KC_GLHF:
-        return send_game_macro("Good luck, have fun!!!", record, false);
-    case KC_SYMM:
-        return send_game_macro("Left click to win!", record, false);
-    case KC_JUSTGAME:
-        return send_game_macro("It may be a game, but if you don't want to actually try, please go play AI, so that people that actually want to take the game seriously and \"get good\" have a place to do so without trolls like you throwing games.", record, false);
-    case KC_TORB:
-        return send_game_macro("That was positively riveting!", record, false);
-    case KC_AIM:
-        send_game_macro("That aim is absolutely amazing. It's almost like you're a machine!", record, true);
-        return send_game_macro("Wait! That aim is TOO good!  You're clearly using an aim hack! CHEATER!", record, false);
-    case KC_C9:
-        return send_game_macro("OMG!!!  C9!!!", record, false);
-    case KC_GGEZ:
-        return send_game_macro("That was a fantastic game, though it was a bit easy. Try harder next time!", record, false);
+
+    case KC_GAMING ... KC_RGBLED: // turn the layer on
+        if (record->event.pressed) {
+            layer_off(_RAISE);
+            layer_off(_LOWER);
+            layer_off(_ADJUST);
+            layer_on(keycode);
+            if (!eeconfig_is_enabled()) {
+                eeconfig_init();
+            }
+            keymap_config.raw = eeconfig_read_keymap();
+            keymap_config.nkro = 1;
+            eeconfig_update_keymap(keymap_config.raw);
+        }
+        return false;
+        break;
+
+    case KC_EXT_GAM ... KC_EXT_RGB: // turn the layer off
+        if (record->event.pressed) {
+            layer_off(keycode - 2); // offset of 2 works because of the specific sequence in process_records.h
+        }
+        return false;
+        break;
+
+    // Macros
+#ifdef MACROS_ENABLED
+
+    case SwMon:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LSFT(SS_LGUI(SS_TAP(X_RIGHT))));
+      }
+      return false;
+      break;
+
+    case DelDng:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_KP_9)));
+      }
+      return false;
+      break;
+
+    case LoginEIDPW:
+      if (record->event.pressed) {
+        SEND_STRING("EID" SS_TAP(X_TAB) "PW" SS_TAP(X_ENTER));
+        // SEND_STRING(secrets[1] SS_TAP(X_TAB) secrets[2] SS_TAP(X_ENTER));
+      }
+      return false;
+      break;
+
+    case Debug:
+      if (record->event.pressed) {
+        SEND_STRING("Debug.Print ");
+      }
+      return false;
+      break;
+
+    case Cmnt:
+      if (record->event.pressed) {
+        SEND_STRING("'" SS_TAP(X_LEFT) SS_TAP(X_DOWN));
+      }
+      return false;
+      break;
+
+    case UnCm:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(X_DELETE) SS_TAP(X_UP));
+      }
+      return false;
+      break;
+
+    case Chr34:
+      if (record->event.pressed) {
+        SEND_STRING(" & Chr(34) & ");
+      }
+      return false;
+      break;
+
+    case EWO:
+      if (record->event.pressed) {
+        /*                 1             2             3             4             5             6             7             8                                                                                                                              1             2             3             4             5             6             7             8             9             10            11            12            13            14            15            16            17            18            19    */
+        SEND_STRING(SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) "Is Not" SS_TAP(X_TAB) "Com" SS_TAP(X_TAB) "Is Not" SS_TAP(X_TAB) "Can" SS_TAP(X_TAB) SS_TAP(X_TAB) "Gilbertson" SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB));
+      }
+      return false;
+      break;
+
+    case PVP:
+      if (record->event.pressed) {
+        /*   Alt, T, R, T, Up Arrow x19 (to get to swDocMgr 2014), Space, N, Up Arrow x36 (to get to Microsoft XML 6.0), Space, Up Arrow x83 (to get to Microsoft Excel 16.0), Space, Enter  */
+        /*                                      1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19                1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35               1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35           36           37           38           39           40           41           42           43           44           45           46           47           48           49           50           51           52           53           54           55           56           57           58           59           60           61           62           63           64           65           66           67           68           69           70           71           72           73           74           75           76           77           78           79           80           81           82           83                      */
+        SEND_STRING(SS_TAP(X_LALT) "trt" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " N" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " " SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " " SS_TAP(X_ENTER));
+      }
+      return false;
+      break;
+
+    case DelEnd:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_TAP(X_DELETE));
+      }
+      return false;
+      break;
+      
+    case Rodman:
+      if (record->event.pressed) {
+        SEND_STRING("RodmanTM " SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+        register_code(KC_LSFT);
+        SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_RIGHT));
+        unregister_code(KC_LSFT);
+        register_code(KC_LCTL);
+        register_code(KC_LSFT);
+        register_code(KC_EQL);
+        unregister_code(KC_EQL);
+        unregister_code(KC_LSFT);
+        unregister_code(KC_LCTL);
+        SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_DELETE));
+      }
+      return false;
+      break;
 #endif // MACROS_ENABLED
 
-
-    case KC_DIABLO_CLEAR:  // reset all Diablo timers, disabling them
-#ifdef TAP_DANCE_ENABLE
-        if (record->event.pressed) {
-            uint8_t dtime;
-            for (dtime = 0; dtime < 4; dtime++) {
-                diablo_timer[dtime].key_time = diablo_times[0];
-            }
-        }
-#endif // TAP_DANCE_ENABLE
-        break;
-
-
-  case KC_CCCV:                                    // One key copy/paste
-        if(record->event.pressed){
-            copy_paste_timer = timer_read();
-            } else {
-            if (timer_elapsed(copy_paste_timer) > TAPPING_TERM) {   // Hold, copy
-                register_code(KC_LCTL);
-                tap_code(KC_C);
-                unregister_code(KC_LCTL);
-            } else {                                // Tap, paste
-                register_code(KC_LCTL);
-                tap_code(KC_V);
-                unregister_code(KC_LCTL);
-            }
-        }
-        break;
 #ifdef UNICODE_ENABLE
     case UC_FLIP: // (ノಠ痊ಠ)ノ彡┻━┻
         if (record->event.pressed) {
@@ -154,8 +172,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     }
     return process_record_keymap(keycode, record) &&
+/*
+// this is drashna's, not sure how/if I want to incorporate it into my own stuff:
+// process_record_user_rgb is defined in drashna's rgb_stuff.h, which I haven't duplicated for myself
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
         process_record_user_rgb(keycode, record) &&
 #endif // RGBLIGHT_ENABLE
+*/
         process_record_secrets(keycode, record);
+
 }

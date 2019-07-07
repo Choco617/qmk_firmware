@@ -50,12 +50,19 @@ EXTRAKEY_ENABLE = yes       # Audio control and System control(+450)
 CONSOLE_ENABLE = no        # Console for debug(+400)
 COMMAND_ENABLE = no        # Commands for debug and configuration
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
-NKRO_ENABLE = yes           # USB Nkey Rollover
+NKRO_ENABLE = no            # USB Nkey Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on B7 by default
 MIDI_ENABLE = no            # MIDI controls
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
+TAP_DANCE_ENABLE = yes		# toggle tap dance! mmm-tss mmm-tss
+RGBLIGHT_ENABLE = yes
 
-LAYOUTS = planck_mit ortho_4x12
+LAYOUTS = ortho_4x12 planck_mit planck_grid
 LAYOUTS_HAS_RGB = no
+
+MACROS_ENABLED = yes # enable drashna-style macros
+
+# possibly necessary to enable RESET keycode
+BOOTLOADER = caterina

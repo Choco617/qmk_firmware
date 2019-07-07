@@ -11,8 +11,12 @@ enum userspace_custom_keycodes {
     VRSN = PLACEHOLDER_SAFE_RANGE,              // Prints QMK Firmware and board info
     KC_COLEMAK,        // Sets default layer to COLEMAK
     KC_COLEMAKWIN,     // Sets default layer to COLEMAK, adventurous for Windows
-    KC_COLEMACMAC,     // Sets default layer to COLEMAK, adventurous for macOS
-    KC_MAKE,           // Run keyboard's customized make command
+    KC_COLEMAKMAC,     // Sets default layer to COLEMAK, adventurous for macOS
+    KC_QWERTY,         // Sets default layer to QWERTY
+    KC_GAMING,         // Sets default layer to GAMING
+    KC_RGBLED,         // Sets default layer to RGBLED
+    KC_EXT_GAM,
+    KC_EXT_RGB,
     KC_SECRET_1,       // test1
     KC_SECRET_2,       // test2
     KC_SECRET_3,       // test3
@@ -22,7 +26,18 @@ enum userspace_custom_keycodes {
     UC_TABL,           // ┬─┬ノ( º _ ºノ)
     UC_SHRG,           // ¯\_(ツ)_/¯
     UC_DISA,           // ಠ_ಠ
-    NEW_SAFE_RANGE     //use "NEWPLACEHOLDER for keymap specific codes
+    SwMon,
+    DelDng,
+    Debug,
+    Cmnt,
+    UnCm,
+    Chr34,
+    EWO,
+    PVP,
+    DelEnd,
+    LoginEIDPW,
+    Rodman,
+    NEW_SAFE_RANGE     //use "NEWPLACEHOLDER" for keymap specific codes
 };
 
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record);
@@ -41,6 +56,11 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define COLEMAK KC_COLEMAK
 #define COLEMAKWIN KC_COLEMAKWIN
 #define COLEMAKMAC KC_COLEMAKMAC
+#define QWERTY KC_QWERTY
+#define GAMING KC_GAMING
+#define RGBLED KC_RGBLED
+#define EXT_GAM KC_EXT_GAM
+#define EXT_RGB KC_EXT_RGB
 
 #define KC_RESET RESET
 #define KC_RST KC_RESET
