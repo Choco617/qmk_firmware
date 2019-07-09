@@ -6,11 +6,11 @@
 // `PROGMEM const char secret[][x]` may work better, but it takes up more space in the firmware
 // And I'm not familiar enough to know which is better or why...
 static const char * const secret[] = {
-  "Choco617test1",
-  "Choco617test2",
-  "Choco617test3",
-  "Choco617test4",
-  "Choco617test5"
+  "[redacted1]",
+  "[redacted2]",
+  "[redacted3]",
+  "[redacted4]",
+  "[redacted5]"
 };
 #endif
 

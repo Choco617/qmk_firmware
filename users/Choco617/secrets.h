@@ -1,7 +1,7 @@
 static const char * const secrets[] = {
-  "secret1",
-  "secret2",
-  "secret3",
+  "E1190380",
+  "Rheese2019",
+  "blud'geoned",
   "secret4",
   "secret5"
 };

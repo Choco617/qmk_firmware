@@ -35,12 +35,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_off(_RAISE);
             layer_off(_LOWER);
             layer_off(_ADJUST);
-            layer_on(keycode);
+            layer_on(keycode - KC_COLEMAK);
             if (!eeconfig_is_enabled()) {
                 eeconfig_init();
             }
             keymap_config.raw = eeconfig_read_keymap();
-            keymap_config.nkro = 1;
+            // keymap_config.nkro = 1;
             eeconfig_update_keymap(keymap_config.raw);
         }
         return false;
@@ -48,7 +48,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case KC_EXT_GAM ... KC_EXT_RGB: // turn the layer off
         if (record->event.pressed) {
-            layer_off(keycode - 2); // offset of 2 works because of the specific sequence in process_records.h
+            layer_off(keycode - KC_COLEMAK - 2); // offset of 2 works because of the specific sequence in process_records.h
         }
         return false;
         break;
@@ -74,6 +74,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         SEND_STRING("EID" SS_TAP(X_TAB) "PW" SS_TAP(X_ENTER));
         // SEND_STRING(secrets[1] SS_TAP(X_TAB) secrets[2] SS_TAP(X_ENTER));
+
       }
       return false;
       break;

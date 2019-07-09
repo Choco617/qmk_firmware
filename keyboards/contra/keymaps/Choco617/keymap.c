@@ -20,8 +20,8 @@
 #include "action_layer.h"
 #include "Choco617.h"
 
-#define EID "E1190380"
-#define PW "Rheese2019"
+#define EID "oldID"
+#define PW "oldpass"
 #define EID2 KC_SECRET_1
 #define PW2 KC_SECRET_2
 #define CAD LCTL(LALT(KC_DEL))
@@ -66,50 +66,10 @@
 
 extern keymap_config_t keymap_config;
 
-/*
-enum planck_layers {
-  _COLEMAK,
-  _ADVENTUROUS,
-  _QWERTY,
-  _LOWER,
-  _RAISE,
-  _POWER,
-  _MACRO,
-  _GAMING,
-  _RGBLED
-};
-*/
-
-/*
-enum planck_keycodes {
-  COLEMAK = SAFE_RANGE,
-  ADVENTUROUS,
-  QWERTY,
-  LOWER,
-  RAISE,
-  POWER,
-  GAMING,
-  EXT_GAM,
-  RGBLED,
-  EXT_RGB,
-  SwMon,
-  DelDng,
-  Debug,
-  Cmnt,
-  UnCm,
-  Chr34,
-  EWO,
-  PVP,
-  DelEnd,
-  LoginEIDPW,
-  Rodman,
-  W10F8
-};
-*/
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Colemak-DHm
+  /*
 [_COLEMAK] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
    TAB,    TDQ,    W,      F,      P,      B,      J,      L,      U,      Y,      SCLN,   BSPC,
@@ -118,6 +78,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    LCTL,   LGUI,   LALT,   POWR,   LOWR,   SHBS,   SPC,    RASE,   LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
+  */
+[_COLEMAK] = LAYOUT_ortho_4x12(
+//┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+   KC_TAB,         _________________COLEMAK_L1________________,           _________________COLEMAK_R1________________,      KC_BSPC,
+   KC_ESC,         _________________COLEMAK_L2________________,           _________________COLEMAK_R2________________,      KC_QUOT,
+   KC_SHCAPS,      _________________COLEMAK_L3________________,           _________________COLEMAK_R3________________,      KC_SHENT,
+   KC_NO,     KC_NO,     KC_NO,     KC_NO,     KC_LODEL,  KC_SHBS,   KC_SPARR,  KC_RAENT,  KC_NO,     KC_NO,     KC_NO,     KC_NO
+//└──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+   )
 
 // Colemak adventurous, Windows
 [_COLEMAKWIN] = LAYOUT_kc(
@@ -181,11 +150,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |SwMon |Debug |EWO   |      |Alt-4 |Alt-H |      |Alt-1 |      |      |Reset |GAMING|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |DelDng|Cmnt  |PVP   |      |Alt-M |Alt-A |      |      |      |      |      |Rodman|
+ * |DelDng|Cmnt  |PVP   |      |Alt-M |Alt-A |      |      |      |      |RGB   |Rodman|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Un-c  |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |Chr34 |      |      |      |NumLk | RGB  |      |      |Qwerty|ADVNTR|Colemk|
+ * |      |Chr34 |      |      |      |NumLk | RGB  |      |Qwerty|Colemk|CMWin |CMMac |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
@@ -247,202 +216,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#ifdef AUDIO_ENABLE
-  float plover_song[][2]     = SONG(PLOVER_SOUND);
-  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-#endif
-
-/*
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-
-    
-    // layers
-
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-
-    case ADVENTUROUS:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_ADVENTUROUS);
-      }
-      return false;
-      break;
-
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _MACRO);
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _MACRO);
-      }
-      return false;
-      break;
-
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _MACRO);
-      } else {
-        layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _MACRO);
-      }
-      return false;
-      break;
-
-    case GAMING:
-      if (record->event.pressed) {
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_MACRO);
-        layer_on(_GAMING);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
-      break;
-
-    case EXT_GAM:
-      if (record->event.pressed) {
-        layer_off(_GAMING);
-      }
-      return false;
-      break;
-	  
-	  
-    case RGBLED:
-      if (record->event.pressed) {
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_MACRO);
-        layer_on(_RGBLED);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
-      break;
-
-    case EXT_RGB:
-      if (record->event.pressed) {
-        layer_off(_RGBLED);
-      }
-      return false;
-      break;
-
-    // macros
-
-    case SwMon:
-      if (record->event.pressed) {
-        SEND_STRING(SS_LSFT(SS_LGUI(SS_TAP(X_RIGHT))));
-      }
-      return false;
-      break;
-
-    case DelDng:
-      if (record->event.pressed) {
-        SEND_STRING(SS_LALT(SS_TAP(X_KP_9)));
-      }
-      return false;
-      break;
-
-    case LoginEIDPW:
-      if (record->event.pressed) {
-        SEND_STRING(EID SS_TAP(X_TAB) PW SS_TAP(X_ENTER));
-      }
-      return false;
-      break;
-
-    case Debug:
-      if (record->event.pressed) {
-        SEND_STRING("Debug.Print ");
-      }
-      return false;
-      break;
-
-    case Cmnt:
-      if (record->event.pressed) {
-        SEND_STRING("'" SS_TAP(X_LEFT) SS_TAP(X_DOWN));
-      }
-      return false;
-      break;
-
-    case UnCm:
-      if (record->event.pressed) {
-        SEND_STRING(SS_TAP(X_DELETE) SS_TAP(X_UP));
-      }
-      return false;
-      break;
-
-    case Chr34:
-      if (record->event.pressed) {
-        SEND_STRING(" & Chr(34) & ");
-      }
-      return false;
-      break;
-
-    case EWO:
-      if (record->event.pressed) {
-        //                 1             2             3             4             5             6             7             8                                                                                                                              1             2             3             4             5             6             7             8             9             10            11            12            13            14            15            16            17            18            19    
-        SEND_STRING(SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) "Is Not" SS_TAP(X_TAB) "Com" SS_TAP(X_TAB) "Is Not" SS_TAP(X_TAB) "Can" SS_TAP(X_TAB) SS_TAP(X_TAB) "Gilbertson" SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB));
-      }
-      return false;
-      break;
-
-    case PVP:
-      if (record->event.pressed) {
-      	//   Alt, T, R, T, Up Arrow x19 (to get to swDocMgr 2014), Space, N, Up Arrow x36 (to get to Microsoft XML 6.0), Space, Up Arrow x83 (to get to Microsoft Excel 16.0), Space, Enter
-        //                                      1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19                1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35               1            2            3            4            5            6            7            8            9            10           11           12           13           14           15           16           17           18           19           20           21           22           23           24           25           26           27           28           29           30           31           32           33           34           35           36           37           38           39           40           41           42           43           44           45           46           47           48           49           50           51           52           53           54           55           56           57           58           59           60           61           62           63           64           65           66           67           68           69           70           71           72           73           74           75           76           77           78           79           80           81           82           83
-        SEND_STRING(SS_TAP(X_LALT) "trt" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " N" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " " SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " " SS_TAP(X_ENTER));
-      }
-      return false;
-      break;
-
-  	case DelEnd:
-  	  if (record->event.pressed) {
-  	  	SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_TAP(X_DELETE));
-  	  }
-  	  return false;
-  	  break;
-      
-    case Rodman:
-      if (record->event.pressed) {
-        SEND_STRING("RodmanTM " SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
-        register_code(KC_LSFT);
-        SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_RIGHT));
-        unregister_code(KC_LSFT);
-        register_code(KC_LCTL);
-        register_code(KC_LSFT);
-        register_code(KC_EQL);
-        unregister_code(KC_EQL);
-        unregister_code(KC_LSFT);
-        unregister_code(KC_LCTL);
-        SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_DELETE));
-      }
-      return false;
-      break;
-
-  }
-  return true;
-}
-*/
 
