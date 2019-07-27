@@ -71,11 +71,26 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define KC_C1R3 KC_BSPC
 #endif // SWAP_HANDS_ENABLE
 
+
+// macro definitiont
+#define KC_DELE DelEnd
+// Tap Dance definitions
+#define KC_TDQ TD(TD_Q)
+#define KC_TDS TD(TD_SLS)
+#define KC_TDL TD(TD_LPN)
+#define KC_TDR TD(TD_RPN)
+#define KC_TDC TD(TD_COLON)
 // LT and Mod-Tap definitions
+#define KC_SHENT SFT_T(KC_ENT)
+#define KC_SHCAPS SFT_T(KC_CAPS)
+#define KC_SHBS SFT_T(KC_BSPC)
+#define KC_POWR MO(_POWER)
+#define KC_LOWR LOWER
+#define KC_RASE RAISE
+#define KC_MADJ MO(_ADJUST)
 #define KC_SPARR LT(_POWER, KC_SPC) // SPace or ARRow layer (actually named POWER)
 #define KC_RAENT LT(_RAISE, KC_ENT) // RAise or ENTer
 #define KC_LODEL LT(_LOWER, KC_DEL) // LOwer or DELete
-#define KC_MMAC MO(_MACRO)
 // Colemak home row mods, Windows
 #define KC_CTLA CTL_T(KC_A)
 #define KC_WINR GUI_T(KC_R)

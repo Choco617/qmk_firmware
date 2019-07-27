@@ -1,4 +1,5 @@
 #include "Choco617.h"
+#include "secrets.h"
 
 uint16_t copy_paste_timer;
 
@@ -72,9 +73,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case LoginEIDPW:
       if (record->event.pressed) {
-        SEND_STRING("EID" SS_TAP(X_TAB) "PW" SS_TAP(X_ENTER));
-        // SEND_STRING(secrets[1] SS_TAP(X_TAB) secrets[2] SS_TAP(X_ENTER));
-
+        // SEND_STRING("EID" SS_TAP(X_TAB) "PW" SS_TAP(X_ENTER));
+        send_string_with_delay(secrets[0], MACRO_TIMER); 
+        SEND_STRING(SS_TAP(X_TAB));
+        send_string_with_delay(secrets[1], MACRO_TIMER);
+        SEND_STRING(SS_TAP(X_ENTER));
       }
       return false;
       break;
