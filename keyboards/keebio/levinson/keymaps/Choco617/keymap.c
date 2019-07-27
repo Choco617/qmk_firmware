@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌───────┬───────┬───────┬───────┬───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┐
    TAB,    Q,      W,      E,      R,      T,          NO,     NO,     NO,     INS,    HOME,   PGUP,
    ESC,    A,      S,      D,      F,      G,          NO,     NO,     NO,     DEL,    END,    PGDN,
-   LSFT,   Z,      X,      C,      V,      B,          NO,     NO,     NO,     EXT_GAM,nUP,     ENT,
+   LSFT,   Z,      X,      C,      V,      B,          NO,     NO,     NO,     EXT_GAM,UP,     ENT,
    LCTL,   NO,     NO,     NO,     SPC,    SPC,        NO,     NO,     NO,     LEFT,   DOWN,   RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
