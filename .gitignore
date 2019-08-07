@@ -70,5 +70,7 @@ util/Win_Check_Output.txt
 secrets.tar
 id_rsa_*
 /.vs
-users/Choco617/secrets.c
-users/Choco617/secrets.h
+
+# python things
+__pycache__
+>>>>>>> upstream/master
