@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    GRV,    ______________LOWER_L1_______________,      ______________LOWER_R1_______________,  PGUP,
    TRNS,   ______________LOWER_L2_______________,      ______________LOWER_R2_______________,  PGDN,
    TRNS,   ______________LOWER_L3_______________,      ______________LOWER_R3_______________,  PENT,
-   NO,     NO,     NO,     NO,     TRNS,   TRNS,       PENT,   MADJ,   P0,     NO,     NO,     NO
+   NO,     NO,     NO,     NO,     TRNS,   TRNS,       PENT,   ZADJ,   P0,     NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 

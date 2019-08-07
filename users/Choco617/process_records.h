@@ -88,6 +88,7 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define KC_LOWR LOWER
 #define KC_RASE RAISE
 #define KC_MADJ MO(_ADJUST)
+#define KC_ZADJ LT(_ADJUST, KC_P0)
 #define KC_SPARR LT(_POWER, KC_SPC) // SPace or ARRow layer (actually named POWER)
 #define KC_RAENT LT(_RAISE, KC_ENT) // RAise or ENTer
 #define KC_LODEL LT(_LOWER, KC_DEL) // LOwer or DELete
@@ -101,6 +102,7 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define KC_WINI GUI_T(KC_I)
 #define KC_CTLO CTL_T(KC_O)
 #define KC_CTLP CTL_T(KC_P)
+#define KC_CTLL CTL_T(KC_L)
 // Colemak home row mods, macOS
 #define KC_CMDA GUI_T(KC_A)
 #define KC_ALTR ALT_T(KC_R)
@@ -111,3 +113,5 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define KC_ALTI ALT_T(KC_I)
 #define KC_CMDO GUI_T(KC_O)
 #define KC_CMDP GUI_T(KC_P)
+#define KC_CMDL GUI_T(KC_L)
+#define KC_ALTQ ALT_T(KC_Q) // for Alt-Tab in Win

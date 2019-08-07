@@ -58,11 +58,11 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ______________COLEMAK_R3_____________       K,    H,    COMM, DOT,  TDS
 
 
-#define __________COLEMAK_ADV_WIN_L1_________       Q,    W,    F,    CTLP, B
+#define __________COLEMAK_ADV_WIN_L1_________       ALTQ, W,    F,    CTLP, B
 #define __________COLEMAK_ADV_WIN_L2_________       CTLA, WINR, ALTS, SHFT, G
 #define __________COLEMAK_ADV_WIN_L3_________       Z,    X,    C,    D,    V
 
-#define __________COLEMAK_ADV_WIN_R1_________       J,    L,    U,    Y,    SCLN
+#define __________COLEMAK_ADV_WIN_R1_________       J,    CTLL, U,    Y,    SCLN
 #define __________COLEMAK_ADV_WIN_R2_________       M,    SHFN, ALTE, WINI, CTLO
 #define __________COLEMAK_ADV_WIN_R3_________       K,    H,    COMM, DOT,  TDS
 
@@ -71,7 +71,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __________COLEMAK_ADV_MAC_L2_________       CMDA, ALTR, CTLS, SHFT, G
 #define __________COLEMAK_ADV_MAC_L3_________       Z,    X,    C,    D,    V
 
-#define __________COLEMAK_ADV_MAC_R1_________       J,    L,    U,    Y,    SCLN
+#define __________COLEMAK_ADV_MAC_R1_________       J,    CMDL, U,    Y,    SCLN
 #define __________COLEMAK_ADV_MAC_R2_________       M,    SHFN, CTLE, ALTI, CMDO
 #define __________COLEMAK_ADV_MAC_R3_________       K,    H,    COMM, DOT,  TDS
 

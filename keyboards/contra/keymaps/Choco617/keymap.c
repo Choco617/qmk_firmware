@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    GRV,    ______________LOWER_L1_______________,  ______________LOWER_R1_______________,  PGUP,
    TRNS,   ______________LOWER_L2_______________,  ______________LOWER_R2_______________,  PGDN,
    TRNS,   ______________LOWER_L3_______________,  ______________LOWER_R3_______________,  PENT,
-   NO,     NO,     NO,     NO,     TRNS,   TRNS,   PENT,   MADJ,   P0,     NO,     NO,     NO
+   NO,     NO,     NO,     NO,     TRNS,   TRNS,   PENT,   ZADJ,   P0,     NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -120,7 +120,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_NO,  KC_NO,   KC_NO, KC_NO,       _______,     KC_NUMLOCK, RGB_TOG, _______,     QWERTY, COLEMAK, COLEMAKWIN, COLEMAKMAC}
 },
 
-// Power
 [_POWER] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
    LGN1,   NO,     NO,     BTN2,   BTN1,   NO,     NO,     HOME,   UP,     END,    NO,     NO,
