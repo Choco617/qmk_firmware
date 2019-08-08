@@ -39,7 +39,7 @@ extern uint8_t is_master;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  // Colemak-DHm, regular, with corner modifiers and arrows
+// Colemak-DHm, regular, with corner modifiers and arrows
 [_COLEMAK] = LAYOUT_wrapper(
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
    TAB,    ______________COLEMAK_L1_____________,                     ______________COLEMAK_R1_____________,  BSPC,
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|                |------+------+------+------+------+------|
    * |DelDng|Cmnt  |PVP   |      |Alt-M |Alt-A |                |      |      |      |      |      |Rodman|
    * |------+------+------+------+------+------|                |------+------+------+------+------+------|
-   * |      |Un-c  |      |      |      |      |                |      |      |Qwerty|Colemk|CMWin |CMMac |
+   * |      |Un-c  |      |      |Shrug |      |                |UC_WIN|UC_OSX|Qwerty|Colemk|CMWin |CMMac |
    * |------+------+------+------+------+------|------.  ,------|------+------+------+------+------+------|
    *                             |      |      |NumLk |  |      |      |      |
    *                             `--------------------'  `--------------------,
@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJUST] = LAYOUT(
     Chr34,  Debug,   EWO,   KC_NO,       LALT(KC_P4), LALT(KC_H),                           KC_NO,   LALT(KC_P1), KC_NO,  KC_NO,   RESET,      GAMING,
     DelDng, Cmnt,    PVP,   KC_NO,       LALT(KC_M),  LALT(KC_A),                           KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,      Rodman,
-    KC_NO,  UnCm,    KC_NO, KC_NO,       KC_NO,       KC_NO,                                KC_NO,   KC_NO,       QWERTY, COLEMAK, COLEMAKWIN, COLEMAKMAC,
+    KC_NO,  UnCm,    KC_NO, KC_NO,       KC_SHRG,     KC_NO,                                UC_M_WC, UC_M_OS,     QWERTY, COLEMAK, COLEMAKWIN, COLEMAKMAC,
                                          KC_NO,       _______,     KC_NUMLOCK,       KC_NO, _______, KC_NO
   ),
 

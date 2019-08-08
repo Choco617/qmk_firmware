@@ -22,10 +22,10 @@ enum userspace_custom_keycodes {
     KC_SECRET_3,       // test3
     KC_SECRET_4,       // test4
     KC_SECRET_5,       // test5
-    UC_FLIP,           // (ಠ痊ಠ)┻━┻
-    UC_TABL,           // ┬─┬ノ( º _ ºノ)
-    UC_SHRG,           // ¯\_(ツ)_/¯
-    UC_DISA,           // ಠ_ಠ
+    KC_FLIP,           // (ಠ痊ಠ)┻━┻
+    KC_TABL,           // ┬─┬ノ( º _ ºノ)
+    KC_SHRG,           // ¯\_(ツ)_/¯
+    KC_DISA,           // ಠ_ಠ
     SwMon,
     DelDng,
     Debug,

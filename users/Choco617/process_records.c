@@ -153,22 +153,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif // MACROS_ENABLED
 
 #ifdef UNICODE_ENABLE
-    case UC_FLIP: // (ノಠ痊ಠ)ノ彡┻━┻
+    case KC_FLIP: // (ノಠ痊ಠ)ノ彡┻━┻
         if (record->event.pressed) {
             send_unicode_hex_string("0028 30CE 0CA0 75CA 0CA0 0029 30CE 5F61 253B 2501 253B");
         }
         break;
-    case UC_TABL: // ┬─┬ノ( º _ ºノ)
+    case KC_TABL: // ┬─┬ノ( º _ ºノ)
         if (record->event.pressed) {
             send_unicode_hex_string("252C 2500 252C 30CE 0028 0020 00BA 0020 005F 0020 00BA 30CE 0029");
         }
         break;
-    case UC_SHRG: // ¯\_(ツ)_/¯
+    case KC_SHRG: // ¯\_(ツ)_/¯
         if (record->event.pressed) {
             send_unicode_hex_string("00AF 005C 005F 0028 30C4 0029 005F 002F 00AF");
         }
         break;
-    case UC_DISA: // ಠ_ಠ
+    case KC_DISA: // ಠ_ಠ
         if (record->event.pressed) {
             send_unicode_hex_string("0CA0 005F 0CA0");
         }
