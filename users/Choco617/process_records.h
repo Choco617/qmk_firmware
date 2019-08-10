@@ -115,3 +115,4 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define KC_CMDP GUI_T(KC_P)
 #define KC_CMDL GUI_T(KC_L)
 #define KC_ALTQ ALT_T(KC_Q) // for Alt-Tab in Win
+#define KC_CMDQ GUI_T(KC_Q) // for Cmd-Tab in Mac

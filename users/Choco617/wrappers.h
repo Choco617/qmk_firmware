@@ -67,7 +67,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __________COLEMAK_ADV_WIN_R3_________       K,    H,    COMM, DOT,  TDS
 
 
-#define __________COLEMAK_ADV_MAC_L1_________       Q,    W,    F,    CMDP, B
+#define __________COLEMAK_ADV_MAC_L1_________       CMDQ, W,    F,    CMDP, B
 #define __________COLEMAK_ADV_MAC_L2_________       CMDA, ALTR, CTLS, SHFT, G
 #define __________COLEMAK_ADV_MAC_L3_________       Z,    X,    C,    D,    V
 
