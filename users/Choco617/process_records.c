@@ -28,6 +28,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_COLEMAK ... KC_QWERTY: // set default layer for any of the Colemak variants or Qwerty (not gaming or RGBLED)        
         if (record->event.pressed) {
             set_single_persistent_default_layer(keycode - KC_COLEMAK);
+            #ifdef UNICODE_ENABLE
+              if (keycode == KC_COLEMAKWIN) {
+                  set_unicode_input_mode(UC_WINC);
+              }
+              if (keycode == KC_COLEMAKMAC) {
+                  set_unicode_input_mode(UC_OSX);
+              }
+            #endif
         }
         break;
 

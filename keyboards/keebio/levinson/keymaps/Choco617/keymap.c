@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_WIN_L1_________,      __________COLEMAK_ADV_WIN_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_WIN_L2_________,      __________COLEMAK_ADV_WIN_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_WIN_L3_________,      __________COLEMAK_ADV_WIN_R3_________,  SHENT,
-   NO,     NO,     NO,     NO,     LODEL,  SHBS,       SPARR,  RAENT,  NO,     NO,     NO,     NO
+   LCTL,   LGUI,   LALT,   NO,     LODEL,  SHBS,       SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_MAC_L1_________,      __________COLEMAK_ADV_MAC_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_MAC_L2_________,      __________COLEMAK_ADV_MAC_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_MAC_L3_________,      __________COLEMAK_ADV_MAC_R3_________,  SHENT,
-   NO,     NO,     NO,     NO,     LODEL,  SHBS,       SPARR,  RAENT,  NO,     NO,     NO,     NO
+   LCTL,   LGUI,   LALT,   NO,     LODEL,  SHBS,       SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    GRV,    ______________LOWER_L1_______________,      ______________LOWER_R1_______________,  PGUP,
    TRNS,   ______________LOWER_L2_______________,      ______________LOWER_R2_______________,  PGDN,
    TRNS,   ______________LOWER_L3_______________,      ______________LOWER_R3_______________,  PENT,
-   NO,     NO,     NO,     NO,     TRNS,   TRNS,       PENT,   ZADJ,   P0,     NO,     NO,     NO
+   NO,     NO,     NO,     NO,     TRNS,   TRNS,       PENT,   ZADJ,   TDC,    NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -155,10 +155,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RGBLED] = LAYOUT_ortho_4x12( \
 //┌────────┬────────┬─────────┬─────────┬──────┬────────┐   ┌─────────┬──────┬──────┬────────┬──────┬───────┐
-  RGB_HUD,  RGB_HUI, RGB_M_P,  RGB_M_SN, KC_NO, BL_INC,  		 RGB_M_SN, KC_NO, KC_NO, KC_NO,   KC_NO, RGB_TOG,
-  RGB_SAD,  RGB_SAI, RGB_M_B,  RGB_M_K,  KC_NO, BL_DEC,  		 RGB_M_K,  KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,
+  RGB_HUD,  RGB_HUI, RGB_M_P,  RGB_M_SN, KC_NO, BL_INC,  	 RGB_M_SN, KC_NO, KC_NO, KC_NO,   KC_NO, RGB_TOG,
+  RGB_SAD,  RGB_SAI, RGB_M_B,  RGB_M_K,  KC_NO, BL_DEC,  	 RGB_M_K,  KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO,
   RGB_VAD,  RGB_VAI, RGB_M_R,  RGB_M_X,  KC_NO, BL_BRTG,  	 RGB_M_X,  KC_NO, KC_NO, EXT_RGB, KC_NO, KC_NO,
-  RGB_RMOD, RGB_MOD, RGB_M_SW, RGB_M_G,  KC_NO, KC_NO, 			 RGB_M_G,  KC_NO, KC_NO, KC_NO,   KC_NO, EXT_RGB
+  RGB_RMOD, RGB_MOD, RGB_M_SW, RGB_M_G,  KC_NO, KC_NO, 		 RGB_M_G,  KC_NO, KC_NO, KC_NO,   KC_NO, EXT_RGB
 //└────────┴────────┴─────────┴─────────┴──────┴────────┘   └─────────┴──────┴──────┴────────┴──────┴───────┘
 )
 

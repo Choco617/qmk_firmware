@@ -35,6 +35,7 @@ extern uint8_t is_master;
 
 #define KC_DWIN GUI_T(KC_MINUS) // D for dash
 #define KC_DCTL CTL_T(KC_MINUS)
+#define KC_DALT ALT_T(KC_MINUS)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_WIN_L1_________,                     __________COLEMAK_ADV_WIN_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_WIN_L2_________,                     __________COLEMAK_ADV_WIN_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_WIN_L3_________,                     __________COLEMAK_ADV_WIN_R3_________,  SHENT,
-                                   DWIN,   LODEL,  SHBS,      SPARR,  RAENT,  DCTL
+                                   DALT,   LODEL,  SHBS,      SPARR,  RAENT,  DCTL
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
 ),
 
@@ -109,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|                |------+------+------+------+------+------|
    * |DelDng|Cmnt  |PVP   |      |Alt-M |Alt-A |                |      |      |      |      |      |Rodman|
    * |------+------+------+------+------+------|                |------+------+------+------+------+------|
-   * |      |Un-c  |      |      |Shrug |      |                |UC_WIN|UC_OSX|Qwerty|Colemk|CMWin |CMMac |
+   * |      |Un-c  |      |      |Shrug |      |                |      |      |Qwerty|Colemk|CMWin |CMMac |
    * |------+------+------+------+------+------|------.  ,------|------+------+------+------+------+------|
    *                             |      |      |NumLk |  |      |      |      |
    *                             `--------------------'  `--------------------,
@@ -132,10 +133,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_GAMING] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
-   TAB,    Q,      W,      E,      R,      T,                         NO,     NO,     NO,     NO,     NO,     NO,
-   ESC,    A,      S,      D,      F,      G,                         NO,     NO,     NO,     EXT_GAM,UP,     ENT,
-   LSFT,   Z,      X,      C,      V,      NO,                        NO,     NO,     NO,     LEFT,   DOWN,   RGHT,
-                                   NO,     LCTL,   SPC,       NO,     NO,     NO
+   1,      TAB,    Q,      W,      E,      R,                         T,      NO,     NO,     NO,     NO,     NO,
+   2,      ESC,    A,      S,      D,      F,                         G,      NO,     NO,     EXT_GAM,UP,     ENT,
+   3,      LSFT,   Z,      X,      C,      V,                         NO,     NO,     NO,     LEFT,   DOWN,   RGHT,
+                                   LCTL,   LCTL,   SPC,       NO,     NO,     NO
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),
 };
