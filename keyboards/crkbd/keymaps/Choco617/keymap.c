@@ -124,9 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_POWER] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
-     LGN1,   NO,     NO,     BTN2,   BTN1,   NO,                      NO,     HOME,   UP,     END,    NO,     NO,
-     LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,                      NO,     LEFT,   DOWN,   RGHT,   NO,     NO,
-     SEC3,   NO,     NO,     NO,     VOLD,   NO,                      NO,     BSPC,   DEL,    ZMO,    ZMI,    NO,
+   LGN1,   NO,     NO,     BTN2,   BTN1,   NO,                        PGUP,   HOME,   UP,     END,    NO,     NO,
+   LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,                        PGDN,   LEFT,   DOWN,   RGHT,   NO,     NO,
+   SEC3,   NO,     NO,     NO,     VOLD,   NO,                        NO,     BSPC,   DEL,    ZMO,    ZMI,    NO,
                                    TRNS,   TRNS,   CAD,       TRNS,   TRNS,   TRNS
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),

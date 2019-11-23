@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_WIN_L1_________,  __________COLEMAK_ADV_WIN_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_WIN_L2_________,  __________COLEMAK_ADV_WIN_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_WIN_L3_________,  __________COLEMAK_ADV_WIN_R3_________,  SHENT,
-   NO,     NO,     NO,     NO,     LODEL,  SHBS,   SPARR,  RAENT,  NO,     NO,     NO,     NO
+   LCTL,   LGUI,   LALT,   POWR,   LODEL,  SHBS,   SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_MAC_L1_________,  __________COLEMAK_ADV_MAC_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_MAC_L2_________,  __________COLEMAK_ADV_MAC_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_MAC_L3_________,  __________COLEMAK_ADV_MAC_R3_________,  SHENT,
-   NO,     NO,     NO,     NO,     LODEL,  SHBS,   SPARR,  RAENT,  NO,     NO,     NO,     NO
+   LCTL,   LGUI,   LALT,   POWR,   LODEL,  SHBS,   SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    GRV,    ______________LOWER_L1_______________,  ______________LOWER_R1_______________,  PGUP,
    TRNS,   ______________LOWER_L2_______________,  ______________LOWER_R2_______________,  PGDN,
    TRNS,   ______________LOWER_L3_______________,  ______________LOWER_R3_______________,  PENT,
-   NO,     NO,     NO,     NO,     TRNS,   TRNS,   PENT,   ZADJ,   P0,     NO,     NO,     NO
+   NO,     NO,     NO,     NO,     TRNS,   TRNS,   TRNS,   ZADJ,   TDC,    NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
