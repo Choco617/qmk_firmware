@@ -35,6 +35,11 @@
 #define KC_FF6 KC_F6
 #define KC_FF7 KC_F7
 
+// dash ModTaps
+#define KC_DWIN GUI_T(KC_MINUS)
+#define KC_DCTL CTL_T(KC_MINUS)
+#define KC_DALT ALT_T(KC_MINUS)
+
 extern keymap_config_t keymap_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_WIN_L1_________,  __________COLEMAK_ADV_WIN_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_WIN_L2_________,  __________COLEMAK_ADV_WIN_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_WIN_L3_________,  __________COLEMAK_ADV_WIN_R3_________,  SHENT,
-   LCTL,   LGUI,   LALT,   POWR,   LODEL,  SHBS,   SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
+   LCTL,   LGUI,   LALT,   DALT,   LODEL,  SHBS,   SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -65,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_MAC_L1_________,  __________COLEMAK_ADV_MAC_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_MAC_L2_________,  __________COLEMAK_ADV_MAC_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_MAC_L3_________,  __________COLEMAK_ADV_MAC_R3_________,  SHENT,
-   LCTL,   LGUI,   LALT,   POWR,   LODEL,  SHBS,   SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
+   LCTL,   LGUI,   LALT,   DWIN,   LODEL,  SHBS,   SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -122,8 +127,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_POWER] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-   LGN1,   NO,     NO,     BTN2,   BTN1,   NO,     NO,     HOME,   UP,     END,    NO,     NO,
-   LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,     NO,     LEFT,   DOWN,   RGHT,   NO,     NO,
+   LGN1,   NO,     NO,     BTN2,   BTN1,   NO,     PGUP,   HOME,   UP,     END,    NO,     NO,
+   LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,     PGDN,   LEFT,   DOWN,   RGHT,   NO,     NO,
    SEC3,   NO,     NO,     NO,     VOLD,   NO,     NO,     BSPC,   DEL,    ZMO,    ZMI,    NO,
    NO,     NO,     NO,     TRNS,   NO,     CAD,    TRNS,   NO,     NO,     NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
