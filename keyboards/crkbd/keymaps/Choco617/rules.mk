@@ -17,6 +17,7 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight. 
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 TAP_DANCE_ENABLE = yes		# toggle tap dance! mmm-tss mmm-tss
+LEADER_ENABLE = yes
 
 # necessary to enable RESET keycode
 BOOTLOADER = caterina

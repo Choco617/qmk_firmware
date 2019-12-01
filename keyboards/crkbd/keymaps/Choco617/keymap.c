@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    __________COLEMAK_ADV_WIN_L1_________,                     __________COLEMAK_ADV_WIN_R1_________,  BSPC,
    ESC,    __________COLEMAK_ADV_WIN_L2_________,                     __________COLEMAK_ADV_WIN_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_WIN_L3_________,                     __________COLEMAK_ADV_WIN_R3_________,  SHENT,
-                                   DALT,   LODEL,  SHBS,      SPARR,  RAENT,  DCTL
+                                   DALT,   LODEL,  SHBS,      SPARR,  RAENT,  LEAD
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
 ),
 
@@ -71,7 +71,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_QWERTY] = LAYOUT_wrapper(
-  // ______________QWERTY_L1______________
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
    TAB,    ______________QWERTY_L1______________,                     ______________QWERTY_R1______________,  BSPC,
    ESC,    ______________QWERTY_L2______________,                     ______________QWERTY_R2______________,  QUOT,
@@ -140,3 +139,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),
 };
+
+// leader key definitions, just for crkbd
+LEADER_EXTERNS();
+void matrix_scan_user(void) {
+	LEADER_DICTIONARY() {
+		leading = false;
+		leader_end();
+		
+		SEQ_ONE_KEY(KC_C) {
+			SEND_STRING("Console.WriteLine($\"");
+		}
+		SEQ_ONE_KEY(KC_D) {
+			SEND_STRING("Debug.Print ");
+		}
+		
+	}
+}
