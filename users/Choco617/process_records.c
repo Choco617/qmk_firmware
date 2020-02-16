@@ -144,6 +144,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       
     case Rodman:
       if (record->event.pressed) {
+        /*
         SEND_STRING("RodmanTM " SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
         register_code(KC_LSFT);
         SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_RIGHT));
@@ -155,6 +156,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_LSFT);
         unregister_code(KC_LCTL);
         SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_DELETE));
+        */
+        SEND_STRING("Rodman" SS_LALT("0153"));
       }
       return false;
       break;

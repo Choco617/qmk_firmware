@@ -153,6 +153,12 @@ void matrix_scan_user(void) {
 		SEQ_ONE_KEY(KC_D) {
 			SEND_STRING("Debug.Print ");
 		}
+    SEQ_ONE_KEY(KC_B) {
+      SEND_STRING("BUT" SS_TAP(X_ENTER));
+    }
+    SEQ_ONE_KEY(KC_T) {
+      SEND_STRING(SS_LALT(SS_TAP(X_F4)));
+    }
 		
 	}
 }
