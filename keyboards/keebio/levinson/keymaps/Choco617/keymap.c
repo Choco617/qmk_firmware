@@ -52,6 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
+/*
 // Colemak-DHm with Windows home row mods
 [_COLEMAKWIN] = LAYOUT_wrapper(
 //┌───────┬───────┬───────┬───────┬───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┐
@@ -59,6 +60,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ESC,    __________COLEMAK_ADV_WIN_L2_________,      __________COLEMAK_ADV_WIN_R2_________,  QUOT,
    SHCAPS, __________COLEMAK_ADV_WIN_L3_________,      __________COLEMAK_ADV_WIN_R3_________,  SHENT,
    LCTL,   LGUI,   LALT,   DALT,   LODEL,  SHBS,       SPARR,  RAENT,  LEFT,   DOWN,   UP,     RGHT
+//└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
+),
+*/
+
+// Colemak-DHm with Windows home row mods
+[_COLEMAKWIN] = LAYOUT_wrapper(
+//┌───────┬───────┬───────┬───────┬───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┐
+   TAB,    __________COLEMAK_ADV_WIN_L1_________,      __________COLEMAK_ADV_WIN_R1_________,  BSPC,
+   ESC,    __________COLEMAK_ADV_WIN_L2_________,      __________COLEMAK_ADV_WIN_R2_________,  QUOT,
+   SHCAPS, __________COLEMAK_ADV_WIN_L3_________,      __________COLEMAK_ADV_WIN_R3_________,  SHENT,
+   LCTL,   LGUI,   LALT,   DALT,   LODEL,  SHBS,       SPARR,  RAENT,  LEAD,   NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
 ),
 
@@ -122,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌───────────┬────────┬──────┬───────┬────────────┬───────────┐    ┌────────┬────────────┬───────┬────────┬───────────┬───────────┐
   Chr34,      Debug,   EWO,   KC_NO,  LALT(KC_P4), LALT(KC_H),       KC_NO,   LALT(KC_P1), KC_NO,  KC_NO,   RESET,      GAMING,
   DelDng,     Cmnt,    PVP,   KC_NO,  LALT(KC_M),  LALT(KC_A),       KC_NO,   KC_NO,       KC_NO,  KC_NO,   RGBLED,     Rodman,
-  KC_NO,      UnCm,    KC_NO, KC_NO,  KC_NO,       KC_NO,            KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,      KC_NO,
+  KC_NO,      UnCm,    KC_NO, KC_NO,  KC_SHRG,     KC_NO,            KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,      KC_NO,
   KC_NUMLOCK, KC_NO,   KC_NO, KC_NO,  _______,     BL_TOGG,          RGB_TOG, _______,     QWERTY, COLEMAK, COLEMAKWIN, COLEMAKMAC
 //└───────────┴────────┴──────┴───────┴────────────┴───────────┘    └────────┴────────────┴───────┴────────┴───────────┴───────────┘
 ),
@@ -168,3 +180,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 
 };
+
+// leader key definitions, just for Levinson (copied from my crkbd)
+LEADER_EXTERNS();
+void matrix_scan_user(void) {
+	LEADER_DICTIONARY() {
+		leading = false;
+		leader_end();
+		
+		SEQ_ONE_KEY(KC_C) {
+			SEND_STRING("Console.WriteLine($\"");
+		}
+		SEQ_ONE_KEY(KC_D) {
+			SEND_STRING("Debug.Print ");
+		}
+    SEQ_ONE_KEY(KC_B) {
+      SEND_STRING("BUT" SS_TAP(X_ENTER));
+    }
+    SEQ_ONE_KEY(KC_T) {
+      SEND_STRING(SS_LALT(SS_TAP(X_F4)));
+    }
+		
+	}
+}
