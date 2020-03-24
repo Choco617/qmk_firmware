@@ -157,7 +157,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_LCTL);
         SEND_STRING(SS_TAP(X_RIGHT) SS_TAP(X_DELETE));
         */
-        SEND_STRING("Rodman" SS_LALT("0153"));
+        //SEND_STRING("Rodman" SS_LALT("0153"));
+        SEND_STRING("Rodman" SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_5) SS_TAP(X_KP_3)));
       }
       return false;
       break;
