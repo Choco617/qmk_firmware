@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID 0xFEED
 #define PRODUCT_ID 0x6060
 #define DEVICE_VER 0x0001
-#define MANUFACTURER    masterzen
+#define MANUFACTURER    Choco617
 #define PRODUCT         Planck
 #define DESCRIPTION     Handwired Planck
 
@@ -44,6 +44,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define BACKLIGHT_PIN C6
 #define BACKLIGHT_LEVELS 3
 
+/* set up for Tap Dance */
+#define TAPPING_TERM 200
+
+/* prevent stuck modifiers */
+#define PREVENT_STUCK_MODIFIERS
+
+#define IGNORE_MOD_TAP_INTERRUPT
 
 
 /*
