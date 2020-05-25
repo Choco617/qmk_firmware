@@ -23,6 +23,7 @@
 #define KC_CAD LCTL(LALT(KC_DEL))
 #define KC_ZMO LCTL(LSFT(KC_MINUS))
 #define KC_ZMI LCTL(LSFT(KC_EQL))
+#define KC_BTAB LSFT(KC_TAB)
 
 // fixes for F1-F7 being weird
 #define KC_FF1 KC_F1
@@ -142,8 +143,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Power
 [_POWER] = LAYOUT_kc(
 //┌───────┬───────┬───────┬───────┬───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┐
-   LGN1,   NO,     NO,     BTN2,   BTN1,   NO,         PGUP,   HOME,   UP,     END,    NO,     NO,
-   LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,         PGDN,   LEFT,   DOWN,   RGHT,   NO,     NO,
+   LGN1,   NO,     NO,     BTN2,   BTN1,   NO,         PGUP,   HOME,   UP,     END,    BTAB,   NO,
+   LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,         PGDN,   LEFT,   DOWN,   RGHT,   TAB,    NO,
    SEC3,   NO,     NO,     NO,     VOLD,   NO,         NO,     BSPC,   DEL,    ZMO,    ZMI,    NO,
    NO,     NO,     NO,     TRNS,   NO,     CAD,        TRNS,   NO,     NO,     NO,     NO,     NO
 //└───────┴───────┴───────┴───────┴───────┴───────┘   └───────┴───────┴───────┴───────┴───────┴───────┘
