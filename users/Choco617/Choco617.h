@@ -40,6 +40,7 @@ enum userspace_layers {
     _QWERTY,
     _GAMING,
     _RGBLED,
+    _SOUTHPAW,
     _LOWER,
     _RAISE,
     _ADJUST,

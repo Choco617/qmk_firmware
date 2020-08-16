@@ -25,7 +25,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-    case KC_COLEMAK ... KC_QWERTY: // set default layer for any of the Colemak variants or Qwerty (not gaming or RGBLED)        
+    case KC_COLEMAK ... KC_QWERTY: // set default layer for any of the Colemak variants or Qwerty (not gaming or RGBLED)
         if (record->event.pressed) {
             set_single_persistent_default_layer(keycode - KC_COLEMAK);
             #ifdef UNICODE_ENABLE
@@ -39,7 +39,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-    case KC_GAMING ... KC_RGBLED: // turn the layer on
+    case KC_GAMING ... KC_STHPAW: // turn the layer on
         if (record->event.pressed) {
             layer_off(_RAISE);
             layer_off(_LOWER);
@@ -55,9 +55,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
 
-    case KC_EXT_GAM ... KC_EXT_RGB: // turn the layer off
+    case KC_EXT_GAM ... KC_EXT_SP: // turn the layer off
         if (record->event.pressed) {
-            layer_off(keycode - KC_COLEMAK - 2); // offset of 2 works because of the specific sequence in process_records.h
+            layer_off(keycode - KC_COLEMAK - 3); // offset of 3 works because of the specific sequence in process_records.h
         }
         return false;
         break;
@@ -82,7 +82,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case LoginEIDPW:
       if (record->event.pressed) {
         // SEND_STRING("EID" SS_TAP(X_TAB) "PW" SS_TAP(X_ENTER));
-        send_string_with_delay(secrets[0], MACRO_TIMER); 
+        send_string_with_delay(secrets[0], MACRO_TIMER);
         SEND_STRING(SS_TAP(X_TAB));
         send_string_with_delay(secrets[1], MACRO_TIMER);
         SEND_STRING(SS_TAP(X_ENTER));
@@ -141,7 +141,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-      
+
     case Rodman:
       if (record->event.pressed) {
         /*

@@ -15,8 +15,10 @@ enum userspace_custom_keycodes {
     KC_QWERTY,         // Sets default layer to QWERTY
     KC_GAMING,         // Sets default layer to GAMING
     KC_RGBLED,         // Sets default layer to RGBLED
+    KC_STHPAW,         // Sets default layer to a southpaw numpad
     KC_EXT_GAM,
     KC_EXT_RGB,
+    KC_EXT_SP,
     KC_SECRET_1,       // test1
     KC_SECRET_2,       // test2
     KC_SECRET_3,       // test3
@@ -59,8 +61,10 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #define QWERTY KC_QWERTY
 #define GAMING KC_GAMING
 #define RGBLED KC_RGBLED
+//#define STHPAW KC_STHPAW // this is not needed and results in an error
 #define EXT_GAM KC_EXT_GAM
 #define EXT_RGB KC_EXT_RGB
+#define EXT_SP KC_EXT_SP
 
 #define KC_RESET RESET
 #define KC_RST KC_RESET
@@ -72,7 +76,7 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 #endif // SWAP_HANDS_ENABLE
 
 
-// macro definitiont
+// macro definitions
 #define KC_DELE DelEnd
 // Tap Dance definitions
 #define KC_TDQ TD(TD_Q)

@@ -79,12 +79,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    DWIN,   LOWR,   SHBS,      SPC,    RASE,   DCTL
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
 ),
-  
-  [_LOWER] = LAYOUT_wrapper(
+
+[_LOWER] = LAYOUT_wrapper(
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
    GRV,    ______________LOWER_L1_______________,                     ______________LOWER_R1_______________,  PGUP,
    TRNS,   ______________LOWER_L2_______________,                     ______________LOWER_R2_______________,  PGDN,
-   TRNS,   ______________LOWER_L3_______________,                     ______________LOWER_R3_______________,  PENT,
+   STHPAW, ______________LOWER_L3_______________,                     ______________LOWER_R3_______________,  PENT,
                                    TRNS,   TRNS,   TRNS,      TRNS,   ZADJ,   TDC
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),
@@ -139,6 +139,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    LCTL,   LCTL,   SPC,       NO,     NO,     NO
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),
+
+  [_SOUTHPAW] = LAYOUT_kc(
+//┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
+   EXT_SP, PSLS,   P7,     P8,     P9,     PAST,                      NO,     NO,     NO,     NO,     NO,     BSPC,
+   ESC,    BSPC,   P4,     P5,     P6,     PMNS,                      NO,     NO,     NO,     NO,     NO,     NO,
+   NO,     DEL,    P1,     P2,     P3,     PPLS,                      NO,     NO,     NO,     NO,     NO,     NO,
+                                   TDC,    P0,     PENT,      NO,     NO,     NO
+//                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
+  ),
 };
 
 // leader key definitions, just for crkbd
@@ -147,7 +156,7 @@ void matrix_scan_user(void) {
 	LEADER_DICTIONARY() {
 		leading = false;
 		leader_end();
-		
+
 		SEQ_ONE_KEY(KC_C) {
 			SEND_STRING("Console.WriteLine($\"");
 		}
@@ -160,6 +169,6 @@ void matrix_scan_user(void) {
     SEQ_ONE_KEY(KC_T) {
       SEND_STRING(SS_LALT(SS_TAP(X_F4)));
     }
-		
+
 	}
 }
