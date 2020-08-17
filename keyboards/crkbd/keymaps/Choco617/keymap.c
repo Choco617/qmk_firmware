@@ -144,8 +144,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
    EXT_SP, PSLS,   P7,     P8,     P9,     PAST,                      NO,     NO,     NO,     NO,     NO,     BSPC,
    ESC,    BSPC,   P4,     P5,     P6,     PMNS,                      NO,     NO,     NO,     NO,     NO,     NO,
-   NO,     DEL,    P1,     P2,     P3,     PPLS,                      NO,     NO,     NO,     NO,     NO,     NO,
-                                   TDC,    P0,     PENT,      NO,     NO,     NO
+   M,      DEL,    P1,     P2,     P3,     PPLS,                      NO,     NO,     NO,     NO,     NO,     NO,
+                                   P0,     TDC,    PENT,      NO,     NO,     NO
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),
 };
