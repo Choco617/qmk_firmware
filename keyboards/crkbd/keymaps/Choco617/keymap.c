@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌───────┬───────┬───────┬───────┬───────┬───────┐                  ┌───────┬───────┬───────┬───────┬───────┬───────┐
    LGN1,   NO,     NO,     BTN2,   BTN1,   NO,                        PGUP,   HOME,   UP,     END,    BTAB,   NO,
    LGN2,   LPRN,   RPRN,   MUTE,   VOLU,   NO,                        PGDN,   LEFT,   DOWN,   RGHT,   TAB,    NO,
-   SEC3,   NO,     NO,     NO,     VOLD,   NO,                        NO,     BSPC,   DEL,    ZMO,    ZMI,    NO,
+   SEC3,   NO,     NO,     TAB,    VOLD,   NO,                        TAB,    BSPC,   DEL,    ZMO,    ZMI,    NO,
                                    TRNS,   TRNS,   CAD,       TRNS,   TRNS,   TRNS
 //                                └───────┴───────┴───────┘  └───────┴───────┴───────┘
   ),
