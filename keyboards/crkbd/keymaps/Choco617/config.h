@@ -38,6 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define PREVENT_STUCK_MODIFIERS
 #define IGNORE_MOD_TAP_INTERRUPT
 
+// prevent occasional same-hand modifiers because of home row mods
+#define BILATERAL_COMBINATIONS 500
+
 // leader key timeout
 #define LEADER_TIMEOUT 300
 
